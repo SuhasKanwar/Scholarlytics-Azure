@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy container app to Azure Web App - Scholarlytics
 
 on:
@@ -47,5 +44,5 @@ jobs:
       with:
         app-name: 'Scholarlytics'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        images: 'scholarlytics.azurecr.io/scholarlytics:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_314618b18840452e9c698306ed218902 }}
+        images: 'scholarlytics.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5f82d03b58c746c1bc2e9cb8a1378eab }}/scholarlytics:${{ github.sha }}'
