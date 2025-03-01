@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: scholarlytics.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5f82d03b58c746c1bc2e9cb8a1378eab }}/scholarlytics:${{ github.sha }}
+        tags: scholarlytics.azurecr.io/${{ secrets.azureappservice_containerusername_5f82d03b58c746c1bc2e9cb8a1378eab | tolower }}/scholarlytics:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
