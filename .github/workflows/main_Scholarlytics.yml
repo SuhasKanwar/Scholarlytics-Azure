@@ -22,15 +22,15 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v2
       with:
-        registry: https://scholarlytics.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_5f82d03b58c746c1bc2e9cb8a1378eab }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_df9c0aae89784a6bb334f2acfa02b4cd }}
+        registry: scholarlytics.azurecr.io
+        username: ${{ secrets.AZURE_CONTAINER_REGISTRY_USERNAME }}
+        password: ${{ secrets.AZURE_CONTAINER_REGISTRY_PASSWORD }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: scholarlytics.azurecr.io/${{ secrets.azureappservice_containerusername_5f82d03b58c746c1bc2e9cb8a1378eab | tolower }}/scholarlytics:${{ github.sha }}
+        tags: scholarlytics.azurecr.io/scholarlytics:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'Scholarlytics'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_314618b18840452e9c698306ed218902 }}
-        images: 'scholarlytics.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_5f82d03b58c746c1bc2e9cb8a1378eab }}/scholarlytics:${{ github.sha }}'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        images: 'scholarlytics.azurecr.io/scholarlytics:${{ github.sha }}'
