@@ -9,7 +9,6 @@ from sklearn.metrics import r2_score
 from sklearn.linear_model import LinearRegression
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.tree import DecisionTreeRegressor
-from xgboost import XGBRegressor
 from sklearn.ensemble import RandomForestRegressor, AdaBoostRegressor
 
 @dataclass
@@ -36,8 +35,7 @@ class ModelTrainer:
                 'KNN': KNeighborsRegressor(),
                 'Decision Tree': DecisionTreeRegressor(),
                 'Random Forest': RandomForestRegressor(),
-                'AdaBoost Regressor': AdaBoostRegressor(),
-                'XGBRegressor': XGBRegressor()
+                'AdaBoost Regressor': AdaBoostRegressor()
             }
 
             params = {
@@ -54,10 +52,6 @@ class ModelTrainer:
                 "Linear Regression": {
                     "fit_intercept": [True, False],
                     "copy_X": [True, False],
-                },
-                "XGBRegressor": {
-                    "learning_rate": [0.1, 0.01, 0.05, 0.001],
-                    "n_estimators": [8, 16, 32, 64, 128, 256],
                 },
                 "AdaBoost Regressor": {
                     "learning_rate": [0.1, 0.01, 0.5, 0.001],
